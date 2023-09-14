@@ -11,6 +11,8 @@ public class Player : NetworkBehaviour
     private NetworkCharacterControllerPrototype _cc;
     private Vector3 _forward;
 
+    [SerializeField] private Transform _spawnTransform;
+
     private void Awake()
     {
         _cc = GetComponent<NetworkCharacterControllerPrototype>();
@@ -33,7 +35,7 @@ public class Player : NetworkBehaviour
                 {
                     delay = TickTimer.CreateFromSeconds(Runner, 0.5f);
                     Runner.Spawn(_prefabBall,
-                    transform.position + _forward, Quaternion.LookRotation(_forward),
+                    _spawnTransform.position + _forward, Quaternion.LookRotation(_forward),
                     Object.InputAuthority, (runner, o) =>
                     {
                         // Initialize the Ball before synchronizing it
@@ -45,7 +47,7 @@ public class Player : NetworkBehaviour
                 {
                     delay = TickTimer.CreateFromSeconds(Runner, 0.5f);
                     Runner.Spawn(_prefabPhysxBall,
-                      transform.position + _forward,
+                      _spawnTransform.position + _forward,
                       Quaternion.LookRotation(_forward),
                       Object.InputAuthority,
                       (runner, o) =>

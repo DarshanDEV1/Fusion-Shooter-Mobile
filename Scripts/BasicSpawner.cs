@@ -33,6 +33,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     private void OnGUI()
     {
+        Rect hostButtonRect = new Rect((Screen.width / 2f) - (200 / 2), (Screen.height / 2f) - (40 / 2), 200, 40);
+        Rect joinButtonRect = new Rect((Screen.width / 2f) - (200 / 2), (Screen.height / 2f) + (40 / 2), 200, 40);
         if (_runner == null)
         {
             if (GUI.Button(new Rect(Screen.width / 2.5f, Screen.height / 2.5f, 200, 40), "Host"))
@@ -112,7 +114,10 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void OnConnectedToServer(NetworkRunner runner) { }
     public void OnDisconnectedFromServer(NetworkRunner runner) { }
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }
-    public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason) { }
+    public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason) 
+    {
+        Debug.Log("Connection failed...");
+    }
     public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message) { }
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList) { }
     public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data) { }

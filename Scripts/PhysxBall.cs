@@ -16,4 +16,9 @@ public class PhysxBall : NetworkBehaviour
         if (life.Expired(Runner))
             Runner.Despawn(Object);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.collider.name);
+    }
 }
